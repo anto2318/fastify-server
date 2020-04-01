@@ -3,9 +3,9 @@ const { camelCase } = require("change-case");
 const { pipe, toPairs, map, fromPairs } = require("ramda");
 
 const config = require("../config");
-const { Application, services, controllers } = require("./app/");
+const { Application, services, controllers } = require("./app");
 
-const { Server, router } = require("./interfaces/http/");
+const { Server, router } = require("./interfaces/http");
 const { createScopePerRequest } = require("./interfaces/http/middleware");
 
 const container = createContainer();
