@@ -1,0 +1,1 @@
+exports.controllerService = require("./service");
