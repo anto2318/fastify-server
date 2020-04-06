@@ -1,55 +1,46 @@
 const faker = require("faker");
-const PlaylistsController = require("./playlists.controller");
+const Controller = require("./controller");
 
-const incidence = {
-  generadoPara: Date.now(),
-  notificacionesActivas: [
-    {
-      id: faker.random.number(),
-      creacion: Date.now() - 30 * 60 * 1000,
-      caducidad: Date.now() + 90 * 60 * 1000,
-      contenido: "Líneas T1 normalizada",
-      lineas: ["T1"],
-      tipo: "Notificacion"
-    }
-  ]
+const obj = {
+  name: 'Obj1',
+  createdAt: Date.now(),
+  updatedAt: Date.now()
 };
 
-describe("Incidences Controller", () => {
-  describe("List incidences", () => {
-    it("It should list all incidences", async () => {
-      const playlistsService = {
-        list: jest.fn().mockResolvedValue(incidence)
+describe("Main Controller", () => {
+  describe("List objs", () => {
+    it("It should list all objs", async () => {
+      const controllerService = {
+        get: jest.fn().mockResolvedValue(obj)
       };
 
       const reply = {
         send: jest.fn()
       };
 
-      const controller = new PlaylistsController({ playlistsService });
+      const controller = new Controller({ controllerService });
 
-      await controller.list(null, reply);
+      await controller.get(null, reply);
 
-      expect(reply.send).toHaveBeenNthCalledWith(1, incidence);
+      expect(reply.send).toHaveBeenNthCalledWith(1, obj);
     });
-    it("It should send an empty array if no notifications", async () => {
-      const playlistsService = {
-        list: jest
+    it("It should send an empty object if no name", async () => {
+      const controllerService = {
+        get: jest
           .fn()
-          .mockResolvedValue({ generadoPara: incidence.generadoPara })
+          .mockResolvedValue({ name: obj.name })
       };
 
       const reply = {
         send: jest.fn()
       };
 
-      const controller = new PlaylistsController({ playlistsService });
+      const controller = new Controller({ controllerService });
 
-      await controller.list(null, reply);
+      await controller.get(null, reply);
 
       expect(reply.send).toHaveBeenNthCalledWith(1, {
-        generadoPara: incidence.generadoPara,
-        notificacionesActivas: []
+        name: "Obj1"
       });
     });
   });
