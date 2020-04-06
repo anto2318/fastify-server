@@ -1,83 +1,63 @@
-# fastify-service
+# Fastify Service
 
-**Contribute to make this a universal service!** 
+These instructions will get you a guide on how to install the Fastify Service and running on your local machine for development and testing purposes.
 
-## Help Wanted
-If you want to contribute with some small problems, here I leave you a list with some of them:
+### Requirements
 
-- Returns the result to the second time of pressing the start button
-- An error occurs with "User authorized access to speech recognition": logDictationFailedWithError
+- Node
+- Yarn
 
-It would be convenient to place a button with the events: PressIn (startSpeech) and PressOut (stopSpeech) of TouchableHighlight with a sound that indicates when it begins to recognize (AudioServicesPlaySystemSound)
+### How to use?
 
-# Example
-Full example for iOS platform located in `/iosSpeechToText`.
+1. Simply clone or download the project
+2. Remove the .git directory (if applicable)
+3. Create _.env_ file 
+5. Edit the content in the _.env_ file with the MONGO_URL
+6. Start developing and testing
 
-# Usage
+### Installation
 
-```javascript
-var Voice = NativeModules.SpeechManager;
+Fastify Service requires [yarn](https://yarnpkg.com) to run.
 
-export default class iosSpeechToText extends Component {
+Install the dependencies and devDependencies to start the server.
 
-  constructor(props){
-    super(props);
-    this.state = {
-      word: ""
-    }
-  }
-  
-  startSpeech(){
-    Voice.microphoneTapped();
-  }
+### Git
 
-  stopSpeech(){
-    var self = this;
-    Voice.stopRecording(function(o) {
+Clone the project
 
-      if(o.result){
-        self.setState({
-          word: o.result
-        })
-      }else{
-        alert("No result")
-      }
-    });
-  }
-  
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Start -> Speak -> Stop
-        </Text>
-        <Text style={styles.instructions}>
-          {this.state.word}
-        </Text>
-
-          <Button title="start" style={{marginBottom:30}} onPress={this.startSpeech.bind(this)}></Button>
-          <Button title="stop" onPress={this.stopSpeech.bind(this)}></Button>
-      </View>
-    );
-  }
-}
+```
+git clone https://github.com/anto2318/fastify-service.git
 ```
 
-## Methods
-Accessible methods to perform actions.
+### Run
 
-Method Name           | Description                                                                         | Platform
---------------------- | ----------------------------------------------------------------------------------- | --------
-startSpeech()         | Starts listening for speech for a specific locale.                                  | iOS
-stopSpeech()          | Stops listening for speech. Returns "No Result" if no data.                         | iOS
+Open a new window in your terminal and run yarn
 
+```sh
+$ yarn install
+$ yarn start
+```
 
-## Events
-Methods that are invoked when a native event emitted.
+### Tech
 
-Event Name                    | Description                                            | Event                                           | Platform
------------------------------ | ------------------------------------------------------ | ----------------------------------------------- | --------
-SFSpeechRecognizer(event)     | Invoked when speech is recognized.                     | `{ error: false }`                              | iOS
-recognitionTask(event)        | Recognizes speech from the audio source.               | `{ error: false }`                              | iOS
-startRecording(event)         | Invoked when .start() is called without error.         | `{ error: false }`                              | iOS
-stopRecording(event)          | Invoked when SpeechRecognizer stops recognition.       | `{ error: error as string }`                    | iOS
+Fastify Service uses a number of projects to work properly:
+
+- [node.js] - evented I/O for the backend
+- [yarn] - packages installer
+
+## Create a new controller
+Accessible npm run commands to perform actions.
+
+Command Name           | Description                                                                        
+---------------------- | -----------------------------------------------------------------------------------
+add:controller         | Creates a new controller, routes, model & schema, services and validation                                 
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+[//]: # "These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax"
+[node.js]: http://nodejs.org
+[yarn]: https://yarnpkg.com/lang/en/
+
+**Contribute to make this a universal service!** 
