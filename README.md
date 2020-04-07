@@ -45,12 +45,12 @@ Fastify Service uses a number of projects to work properly:
 - [node.js] - evented I/O for the backend
 - [yarn] - packages installer
 
-## Create a new controller
+## Create a new module
 Accessible npm run commands to perform actions.
 
 Command Name           | Description                                                                        
 ---------------------- | -----------------------------------------------------------------------------------
-add:controller         | Creates a new controller, routes, model & schema, services and validation                                 
+add:module         | Creates a new module with controller, routes, model & schema, service & validation                                 
 
 ## License
 
