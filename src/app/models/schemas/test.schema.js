@@ -1,8 +1,9 @@
+
 const { Schema } = require('mongoose');
 
 const Definition = {
   name: {
-    type: Schema.Types.String,
+    type: String,
     required: true
   },
   createdAt: {
@@ -15,10 +16,10 @@ const Definition = {
   }
 };
 
-const schema = new Schema(Definition, {
+const testSchema = new Schema(Definition, {
   versionKey: false,
   minimize: false,
   strict: true
 });
 
-module.exports = schema;
+module.exports = testSchema;

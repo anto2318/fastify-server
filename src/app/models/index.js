@@ -1,1 +1,2 @@
-exports.Model = require('./model');
+
+exports.testModel = require('./test.model');

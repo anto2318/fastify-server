@@ -1,1 +1,2 @@
-exports.validation = require('./validation');
+
+exports.test = require('./test.validation');

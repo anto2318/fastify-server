@@ -1,11 +1,12 @@
-const { EntitiesNotFoundError, EntityNotFoundError, EntityExistsUnprocessableEntityError } = require('../errors');
-const { Model } = require('../models')
 
-function Service() {
+const { EntitiesNotFoundError, EntityNotFoundError, EntityExistsUnprocessableEntityError } = require('../errors');
+const { testModel } = require('../models')
+
+function testService() {
   return { get, getOne, add, update, deleteDocument };
 
   async function get() {
-    const result = await Model.find()
+    const result = await testModel.find()
     if (result.length == 0) {
         throw new EntitiesNotFoundError();
       }
@@ -13,7 +14,7 @@ function Service() {
   }
 
   async function getOne(id) {
-    const result = await Model.findById(id)
+    const result = await testModel.findById(id)
 
     if (!result) {
         throw new EntityNotFoundError();
@@ -27,13 +28,13 @@ function Service() {
         createdAt: new Date(),
         updatedAt: new Date()
       };
-      const obj = new Model(data)
+      const obj = new testModel(data)
       obj.save()
         .catch(e => {
             if (e.name === 'MongoError' && e.code === 11000) {
                 throw new EntityExistsUnprocessableEntityError({ entity });
             }
-            throw error;
+            throw e;
         })
 
     return obj;
@@ -44,7 +45,7 @@ function Service() {
       ...entity,
       updatedAt: new Date()
     };
-    const updated = await Model
+    const updated = await testModel
       .findByIdAndUpdate(
         id,
        data,
@@ -61,7 +62,7 @@ function Service() {
    }
 
    async function deleteDocument(id) {
-    const result = await Model.findByIdAndRemove(id)
+    const result = await testModel.findByIdAndRemove(id)
     .catch(e => {
         throw e;
       });
@@ -73,4 +74,5 @@ function Service() {
    }
 }
 
-module.exports = Service;
+module.exports = testService;
+

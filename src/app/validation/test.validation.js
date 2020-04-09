@@ -28,7 +28,7 @@ module.exports = {
         type: 'object',
         required: ['name'],
         properties: {
-          name: { type: 'string' }
+          name: { type: 'string' },
         }
       }
     },
@@ -43,7 +43,7 @@ module.exports = {
         type: 'object',
         required: ['name'],
         properties: {
-          name: { type: 'string' }
+          name: { type: 'string' },
         }
       }
     },

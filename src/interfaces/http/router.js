@@ -1,9 +1,19 @@
-const { Router } = require("../../app/routes");
+const routes = require("../../app/routes");
 const { web } = require("../../../config");
 const swagger = require('fastify-swagger');
+const { camelCase } = require("change-case");
+const { pipe, toPairs, map } = require("ramda");
 
-module.exports = ({ controller }) =>
+module.exports = controllers =>
   async function(fastify, _, next) {
+    
+    map(router => {
+        const name = camelCase(router.name).split('Router')[0];
+        fastify.register(router(controllers[`${name}Controller`]), {
+        prefix: `/api/${name}`
+      })
+    })(routes)
+
     fastify
     .register(swagger, {
       swagger: {
@@ -16,9 +26,6 @@ module.exports = ({ controller }) =>
       exposeRoute: true,
       routePrefix: "/docs"
     })
-      .register(Router(controller), {
-        prefix: "/api"
-      })
       .get("/version", (_, reply) => {
         reply.send(web.artifact);
       });

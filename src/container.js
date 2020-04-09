@@ -9,6 +9,7 @@ const { Server, router } = require("./interfaces/http");
 const { createScopePerRequest } = require("./interfaces/http/middleware");
 
 const container = createContainer();
+
 // System
 container
   .register({

@@ -1,2 +1,2 @@
-exports.controllerService = require("./service");
-exports.userService = require('./user.service');
+
+exports.testService = require('./test.service');

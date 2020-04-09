@@ -1,1 +1,2 @@
-exports.Router = require("./routes");
+
+exports.testRouter = require('./test.routes');

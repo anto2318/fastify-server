@@ -10,7 +10,7 @@
     "format": "prettier --write \"**/*.js\"",
     "test:unit": "jest -c unit.jest.config.js",
     "precommit": "lint-staged && npm run test:unit",
-    "add:module": "node ./src/helpers/addModules.js"
+    "add:module": "node ./src/helpers/addModule.js"
   },
   "author": "",
   "license": "ISC",
