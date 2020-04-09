@@ -50,7 +50,7 @@ Accessible npm run commands to perform actions.
 
 Command Name           | Description                                                                        
 ---------------------- | -----------------------------------------------------------------------------------
-add:module         | Creates a new module with controller, routes, model & schema, service & validation                                 
+add:module <module_name>        | Creates a new module with controller, routes, model & schema, service & validation                                 
 
 ## License
 
