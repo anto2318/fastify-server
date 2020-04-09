@@ -7,13 +7,6 @@ const { pipe, toPairs, map } = require("ramda");
 module.exports = controllers =>
   async function(fastify, _, next) {
     
-    map(router => {
-        const name = camelCase(router.name).split('Router')[0];
-        fastify.register(router(controllers[`${name}Controller`]), {
-        prefix: `/api/${name}`
-      })
-    })(routes)
-
     fastify
     .register(swagger, {
       swagger: {
@@ -29,6 +22,13 @@ module.exports = controllers =>
       .get("/version", (_, reply) => {
         reply.send(web.artifact);
       });
+      
+    map(router => {
+        const name = camelCase(router.name).split('Router')[0];
+        fastify.register(router(controllers[`${name}Controller`]), {
+        prefix: `/api/${name}`
+      })
+    })(routes)
 
     next();
   };
